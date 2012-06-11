@@ -1,0 +1,9 @@
+.view, .controller, .templates {
+display: none;
+}
+.active {
+display: inherit;
+}
+.route {
+cursor: pointer;
+}
