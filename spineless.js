@@ -4,10 +4,8 @@
    * spineless.js - A simple MVC stack without the need of a backbone.
    * https://github.com/heavysixer/spineless
    */
-    var Spineless = (typeof module !== "undefined" && module.exports) || {};
-    (function(opts) {
-        opts.name = "spineless.js";
-        opts.version = "0.1.0";
+    var Spineless = function(options) {
+        var opts = (typeof options !== "undefined") || {};
         opts.render = render;
         var that = this;
         var templates = function(method, locals) {
@@ -100,14 +98,10 @@
               route($(this));
           });
         }
-        init(opts)
-    })(Spineless);
-    $.spineless = function(controller, action, params) {
-        return Spineless;
+        init(opts);
+        return opts;
     };
-    $.fn.spineless = function(controller, action, params) {
-        return $(this).map(function(i, elm) {
-            $.spineless.render(controller, action, params);
-        });
+    $.spineless = function(opts) {
+        return new Spineless(opts);
     };
 })(jQuery);
